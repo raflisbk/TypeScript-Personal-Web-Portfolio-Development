@@ -30,7 +30,7 @@ async function fetchWithRetry<T>(
       // Tangani rate limit
       if (error.status === 403 && error.message.includes('API rate limit exceeded')) {
         const resetTime = error.response?.headers?.['x-ratelimit-reset'] 
-          ? parseInt(error.response.headers['x-ratelimit-reset'], 10) * 30000 
+          ? parseInt(error.response.headers['x-ratelimit-reset'], 10) * 1000 
           : Date.now() + (baseDelay * Math.pow(2, attempt));
         
         const waitTime = Math.max(resetTime - Date.now() + 1000, baseDelay * Math.pow(2, attempt));
