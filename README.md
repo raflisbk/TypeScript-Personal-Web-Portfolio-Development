@@ -1,4 +1,4 @@
-# Web Portofolio Mohamad Rafli Agung Subekti
+# Web Portofolio Subek
 
 Selamat datang di portofolio online saya! Di sini, Anda dapat melihat berbagai proyek yang telah saya kerjakan, keahlian yang saya miliki, serta latar belakang saya di bidang pengembangan perangkat lunak, data science, dan kecerdasan buatan.
 
