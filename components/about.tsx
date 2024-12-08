@@ -19,7 +19,7 @@ export function About() {
           <div className="max-w-xl text-center md:text-left">
             <p className="text-lg text-muted-foreground mb-6">
               Halo!
-              Saya Subek, fresh graduate di bidang Informatika dengan fokus sebagai Data Scientist. 
+              Saya Subek, freshgraduate di bidang Informatika dengan fokus sebagai Data Scientist. 
               Saya memiliki antusiasme besar dalam menganalisis data untuk mengungkap cerita dan wawasan penting yang dapat memberikan solusi nyata dan bermanfaat.            </p>
             <p className="text-lg text-muted-foreground mb-8">
               Lewat berbagai proyek yang saya kerjakan, saya menunjukkan bagaimana algoritma machine learning bisa diterapkan secara praktis untuk menyelesaikan masalah nyata. 
