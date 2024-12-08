@@ -93,7 +93,7 @@ export function Sidebar() {
               className="text-2xl font-bold text-primary neon-text"
               onClick={toggleSidebar} // Menutup sidebar saat mengklik logo
             >
-              DS Portfolio
+              Mohamad Rafli Agung Subekti
             </Link>
             {/* Tombol silang untuk menutup sidebar */}
             <Button variant="ghost" size="icon" onClick={toggleSidebar}>
