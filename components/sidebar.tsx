@@ -96,10 +96,10 @@ export function Sidebar() {
               Mohamad Rafli Agung Subekti
             </Link>
             {/* Tombol silang untuk menutup sidebar */}
-            <Button variant="ghost" size="icon" onClick={toggleSidebar}>
+{/*             <Button variant="ghost" size="icon" onClick={toggleSidebar}>
               <X className="h-6 w-6" />
               <span className="sr-only">Close menu</span>
-            </Button>
+            </Button> */}
           </div>
 
           {/* Navigasi sidebar */}
