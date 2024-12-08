@@ -1,11 +1,11 @@
 import { Octokit } from "@octokit/rest";
 
-// Gunakan environment variable dengan fallback yang aman
+
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN || ''
 });
 
-// Tipe yang lebih ketat dan deskriptif
+
 export type Project = {
   id: string;
   title: string;
@@ -17,7 +17,7 @@ export type Project = {
   readme: string;
 }
 
-// Fungsi retry yang lebih robust dengan timeout eksponensial
+
 async function fetchWithRetry<T>(
   fetchFunction: () => Promise<T>, 
   maxRetries = 3,
@@ -27,7 +27,7 @@ async function fetchWithRetry<T>(
     try {
       return await fetchFunction();
     } catch (error: any) {
-      // Tangani rate limit secara lebih komprehensif
+      // Tangani rate limit
       if (error.status === 403 && error.message.includes('API rate limit exceeded')) {
         const resetTime = error.response?.headers?.['x-ratelimit-reset'] 
           ? parseInt(error.response.headers['x-ratelimit-reset'], 10) * 1000 
@@ -49,7 +49,7 @@ async function fetchWithRetry<T>(
 
 export async function getGitHubProjects(username: string): Promise<Project[]> {
   try {
-    // Validasi username
+    
     if (!username || username.trim() === '') {
       console.error('Invalid GitHub username');
       return [];
@@ -57,7 +57,7 @@ export async function getGitHubProjects(username: string): Promise<Project[]> {
 
     const response = await fetchWithRetry(() => octokit.repos.listForUser({
       username,
-      sort: 'updated',
+      sort: 'stars',
       direction: 'desc',
       per_page: 6
     }));
@@ -76,13 +76,13 @@ export async function getGitHubProjects(username: string): Promise<Project[]> {
         readme = 'README tidak tersedia.';
       }
 
-      // Filter dan bersihkan data
+      // Filter
       return {
         id: repo.name || 'unknown-repo',
         title: repo.name || 'Unnamed Project',
         description: (repo.description || 'Tidak ada deskripsi').trim(),
         link: repo.html_url || '',
-        tags: (repo.topics || []).filter(Boolean), // Hapus tag kosong
+        tags: (repo.topics || []).filter(Boolean), 
         language: repo.language || null,
         stars: repo.stargazers_count || 0,
         readme: readme.length > 0 ? readme : 'README kosong.'
