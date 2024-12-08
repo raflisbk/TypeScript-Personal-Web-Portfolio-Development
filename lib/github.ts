@@ -59,7 +59,7 @@ export async function getGitHubProjects(username: string): Promise<Project[]> {
       username,
       sort: 'updated',
       direction: 'desc',
-      per_page: 15
+      per_page: 6
     }));
 
     // Gunakan Promise.allSettled untuk menangani kesalahan individu
