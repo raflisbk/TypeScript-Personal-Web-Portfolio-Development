@@ -20,7 +20,7 @@ export type Project = {
 
 async function fetchWithRetry<T>(
   fetchFunction: () => Promise<T>, 
-  maxRetries = 3,
+  maxRetries = 5,
   baseDelay = 1000
 ): Promise<T> {
   for (let attempt = 0; attempt < maxRetries; attempt++) {
@@ -30,7 +30,7 @@ async function fetchWithRetry<T>(
       // Tangani rate limit
       if (error.status === 403 && error.message.includes('API rate limit exceeded')) {
         const resetTime = error.response?.headers?.['x-ratelimit-reset'] 
-          ? parseInt(error.response.headers['x-ratelimit-reset'], 10) * 1000 
+          ? parseInt(error.response.headers['x-ratelimit-reset'], 10) * 30000 
           : Date.now() + (baseDelay * Math.pow(2, attempt));
         
         const waitTime = Math.max(resetTime - Date.now() + 1000, baseDelay * Math.pow(2, attempt));
