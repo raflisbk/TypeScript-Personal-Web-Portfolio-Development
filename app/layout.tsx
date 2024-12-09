@@ -14,6 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </head>
       <body className={cn(inter.className, "min-h-screen bg-background antialiased futuristic-bg")}>
         <ThemeProvider
           attribute="class"
