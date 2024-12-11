@@ -57,9 +57,9 @@ export async function getGitHubProjects(username: string): Promise<Project[]> {
 
     const response = await fetchWithRetry(() => octokit.repos.listForUser({
       username,
-      sort: 'updated',
+      sort: 'created',
       direction: 'desc',
-      per_page: 6
+      per_page: 10
     }));
 
     // Gunakan Promise.allSettled untuk menangani kesalahan individu
