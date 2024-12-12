@@ -5,6 +5,10 @@ import { motion } from 'framer-motion'
 import { ProjectCard } from '@/components/project-card'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
 import { getGitHubProjects, Project } from '@/lib/github'
+import Link from 'next/link'
+import { Loader2, AlertCircle, GithubIcon } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 
 export function Projects() {
   const [projects, setProjects] = useState<Project[]>([])
@@ -16,11 +20,7 @@ export function Projects() {
       try {
         setIsLoading(true)
         const githubProjects = await getGitHubProjects('raflisbk')
-        
-        // Urutkan proyek berdasarkan jumlah bintang (opsional)
-        const sortedProjects = githubProjects.sort((a, b) => (b.stars || 0) - (a.stars || 0))
-        
-        setProjects(sortedProjects)
+        setProjects(githubProjects)
         setError(null)
       } catch (err) {
         console.error('Error fetching projects:', err)
@@ -29,59 +29,78 @@ export function Projects() {
         setIsLoading(false)
       }
     }
-    
     fetchProjects()
   }, [])
 
+  const MessageCard = ({ title, description, icon, buttonText, buttonLink }: {
+    title: string;
+    description: string;
+    icon: React.ReactNode;
+    buttonText: string;
+    buttonLink: string;
+  }) => (
+    <Card className="w-full max-w-md mx-auto">
+      <CardHeader>
+        <div className="flex items-center justify-center mb-4">
+          {icon}
+        </div>
+        <CardTitle>{title}</CardTitle>
+        <CardDescription>{description}</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p className="text-center text-muted-foreground">
+          Jika Anda mengalami kesulitan dalam mengakses proyek-proyek saya atau mengalami loading yang terus-menerus, hal ini disebabkan resource API yang terbatas.
+          Silahkan kunjungi profil GitHub saya untuk melihat portofolio dan proyek-proyek terbaru.
+        </p>
+      </CardContent>
+      <CardFooter className="flex justify-center">
+        <Button asChild>
+          <Link href={buttonLink} target="_blank" rel="noopener noreferrer">
+            <GithubIcon className="mr-2 h-4 w-4" /> {buttonText}
+          </Link>
+        </Button>
+      </CardFooter>
+    </Card>
+  )
+
   if (isLoading) {
     return (
-      <div className="text-center py-10 flex justify-center items-center">
-        <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-500"></div>
-        <span className="ml-3">Memuat proyek...</span>
+      <div className="flex items-center justify-center min-h-[50vh]">
+        <MessageCard
+          title="Memuat Proyek"
+          description="Mohon tunggu sebentar..."
+          icon={<Loader2 className="h-12 w-12 animate-spin text-primary" />}
+          buttonText="Lihat Profil GitHub"
+          buttonLink="https://github.com/raflisbk"
+        />
       </div>
     )
   }
 
   if (error) {
     return (
-      <div className="text-center py-10 text-red-500">
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          className="h-12 w-12 mx-auto mb-4 text-red-500" 
-          fill="none" 
-          viewBox="0 0 24 24" 
-          stroke="currentColor"
-        >
-          <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            strokeWidth={2} 
-            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" 
-          />
-        </svg>
-        {error}
+      <div className="flex items-center justify-center min-h-[50vh]">
+        <MessageCard
+          title="Terjadi Kesalahan"
+          description={error}
+          icon={<AlertCircle className="h-12 w-12 text-destructive" />}
+          buttonText="Lihat Profil GitHub"
+          buttonLink="https://github.com/raflisbk"
+        />
       </div>
     )
   }
 
   if (projects.length === 0) {
     return (
-      <div className="text-center py-10">
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          className="h-12 w-12 mx-auto mb-4 text-gray-400" 
-          fill="none" 
-          viewBox="0 0 24 24" 
-          stroke="currentColor"
-        >
-          <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            strokeWidth={2} 
-            d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" 
-          />
-        </svg>
-        Yah kena limit API.
+      <div className="flex items-center justify-center min-h-[50vh]">
+        <MessageCard
+          title="Tidak Ada Proyek"
+          description="Tidak ada proyek yang ditemukan saat ini."
+          icon={<GithubIcon className="h-12 w-12 text-muted-foreground" />}
+          buttonText="Lihat Profil GitHub"
+          buttonLink="https://github.com/raflisbk"
+        />
       </div>
     )
   }
@@ -96,34 +115,22 @@ export function Projects() {
         className="container"
       >
         <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4 neon-text">
-            Portofolio Proyek
-          </h2>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4 neon-text">Portofolio Project</h2>
           <p className="text-muted-foreground">
-          Berikut adalah beberapa proyek yang pernah saya kerjakan, Untuk melihat seluruh proyek saya lebih lengkap, Anda dapat mengunjungi halaman GitHub saya.
+            Berikut ini adalah portofolio project yang pernah saya kerjakan.
           </p>
         </div>
         <Carousel 
           className="w-full max-w-5xl mx-auto"
-          opts={{
-            align: "start",
-            loop: true,
-          }}
         >
           <CarouselContent>
             {projects.map((project, index) => (
-              <CarouselItem 
-                key={project.id} 
-                className="md:basis-1/2 lg:basis-1/3 pl-4"
-              >
+              <CarouselItem key={project.id} className="md:basis-1/2 lg:basis-1/3 pl-4">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ 
-                    duration: 0.5, 
-                    delay: Math.min(index * 0.1, 0.5) 
-                  }}
-                  className="p-1 h-full"
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="p-1"
                 >
                   <ProjectCard project={project} />
                 </motion.div>
