@@ -4,12 +4,12 @@ const skills = [
   {
     name: 'Data Science',
     icon: Brain,
-    description: 'Machine Learning, Deep Learning, Data Wrangling dan ETL, Modeling dan Evaluasi, Python, Tensorflow, Pytorch'
+    description: 'Machine Learning, Deep Learning, Data Wrangling and ETL, Modelling and Evaluation, Python, Tensorflow, Pytorch'
   },
   {
     name: 'Data Analyst',
     icon: TrendingUp,
-    description: 'Pengumpulan dan Pembersihan Data, Analisis Statistik, Data Visualization, Excel, SQL, Tableau, Power BI, Google Data Studio '
+    description: 'Data Collection and Cleaning, Statistical Analysis, Data Visualisation, Excel, SQL, Tableau, Power BI, Google Data Studio '
   },
   {
     name: 'Data Engineer',
