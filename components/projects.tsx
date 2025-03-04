@@ -117,7 +117,7 @@ export function Projects() {
         <div className="mx-auto max-w-2xl text-center mb-16">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4 neon-text">Portofolio Project</h2>
           <p className="text-muted-foreground">
-            Berikut ini adalah portofolio project yang pernah saya kerjakan.
+            Here are the projects that I have worked on.
           </p>
         </div>
         <Carousel 
