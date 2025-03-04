@@ -18,11 +18,11 @@ export function About() {
           </div>
           <div className="max-w-xl text-center md:text-left">
             <p className="text-lg text-muted-foreground mb-6">
-              Halo!
-              Saya Subek, freshgraduate di bidang Informatika dengan fokus sebagai Data Scientist. 
-              Saya memiliki antusiasme besar dalam menganalisis data untuk mengungkap cerita dan wawasan penting yang dapat memberikan solusi nyata dan bermanfaat.            </p>
+              Hello!
+              I'm Subek, a fresh graduate in Informatics with a focus as Data Scientist, Machine Learning Engineer, and AI Enthusiast. 
+              I am passionate about processing and analysing data to uncover hidden patterns and generate insights that can be used for data-driven decision making. With expertise in machine learning, deep learning, and AI, I am committed to developing innovative solutions that can make a real impact in various industries.            </p>
             <p className="text-lg text-muted-foreground mb-8">
-              Lewat berbagai proyek yang saya kerjakan, saya menunjukkan bagaimana algoritma machine learning bisa diterapkan secara praktis untuk menyelesaikan masalah nyata. 
+              Through my various projects, I have proven how machine learning and AI algorithms can be practically applied to solve real-world problems, ranging from computer vision, NLP, to predictive analytics. I am always interested in exploring new technologies and optimising AI models to be more efficient and accurate. 
             </p>
             <Button variant="outline" asChild>
               <Link href="https://www.linkedin.com/in/mohamad-rafli-agung-subekti-640a77285/" target="_blank">
