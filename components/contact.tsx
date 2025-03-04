@@ -42,7 +42,7 @@ export function Contact() {
           </Button>
         </div>
         <p className="text-center text-muted-foreground">
-          Kota Pasuruan, Indonesia
+          Tanjung Duren, Jakarta Barat, Indonesia
         </p>
       </div>
     </section>
