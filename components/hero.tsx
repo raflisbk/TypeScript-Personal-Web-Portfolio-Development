@@ -40,11 +40,11 @@ export function Hero() {
             className="mt-10 flex items-center justify-center gap-6"
           >
             <Button size="lg" asChild className="rounded-full glow hover-glow">
-              <Link href="#projects">Lihat Proyek</Link>
+              <Link href="#projects">View Project</Link>
             </Button>
             <Button size="lg" variant="outline" asChild className="rounded-full border-primary/50 hover:border-primary">
               <Link href="https://medium.com/@raflisbk" target="_blank" rel="noopener noreferrer">
-                Baca Blog
+                Read Blog
               </Link>
             </Button>
           </motion.div>
